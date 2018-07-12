@@ -1,0 +1,169 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Spectral Roleplay</h2>
+        <ol class="breadcrumb">
+            <li ui-sref="ucp.home">
+					Control Panel
+            </li>
+            <li ui-sref="profile.home">
+					Character management
+            </li>
+            <li class="active">
+				<strong>Change skin</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+<div class="row">
+<div class="col-lg-12 fadeInDown animated">
+
+<div class="form-group">
+	<div class="mail-box-header">
+	<div class="pull-right form-inline" ng-init="GetSkin()">
+	
+	<b class="form-control">Filters:</b>
+	<select id="f_skin_race" class="form-control" ng-model="race" ng-init="race = '-1'">
+		<option value="-1">Any race</option>
+		<option value="1">Caucasian</option>
+		<option value="2">African American</option>
+		<option value="3">Latino</option>
+		<option value="4">Asian</option> 
+	</select>
+	<select id="f_skin_gender" class="form-control" ng-model="gender" ng-init="gender = '-1'">
+		<option value="-1">Any gender</option>
+		<option value="1">Male</option>
+		<option value="2">Female</option> 
+	</select>
+	<select id="f_skin_weight" class="form-control" ng-model="weight" ng-init="weight = '-1'">
+		<option value="-1">Any weight</option>
+		<option value="1">Normal</option>
+		<option value="2">Overweight</option>
+		<option value="3">Muscular</option> 
+	</select>
+	<select id="f_skin_category" class="form-control" ng-model="category" ng-init="category = '-1'">
+		<option value="-1">Any category</option>
+		<option value="1">Civilian</option>
+		<option value="2">Gang Member</option>
+		<option value="3">Country &amp; Old people</option>
+		<option value="4">Prostitutes</option>
+		<option value="5">Sportsmen</option>
+		<option value="6">Specific Professions</option>
+		<option value="7">Beach Visitor</option>
+		<option value="8">Homeless person</option> 
+	</select>
+	<button class="btn btn-default" ng-click="GetSkin('1', race, gender, weight, category)">Refresh</button>
+
+	</div>
+	<h2>» Skin change</h2>
+
+	</div>
+	<div class="mail-body white-bg">
+		<img ng-repeat="data in SkinData" ng-click="setSkin(data.id)" src="img/mini_skins/Skin_{{data.id}}.png"/>
+		<div class="text-center">
+			<ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" items-per-page="itemsPerPage" class="pagination" boundary-link-numbers="true" rotate="false" ng-change="GetSkin(bigCurrentPage, race, gender, weight, category)"></ul>
+		</div>
+		<div ng-show="changeSuccess" class="alert alert-success">
+			<i class="glyphicon glyphicon-info-sign"></i> Skin is changing {{changeSuccess}} completed !
+		</div>
+		<div ng-show="selectSkin != -1" class="text-center">
+		<div>
+			<img src="img/skins/{{selectSkin}}.png"/>
+		</div>
+		<div>
+			<button class="btn btn-success" ng-disabled="!selectSkin" ng-click="setCharacterSkin(selectSkin)">Use this skin</button>
+		</div>
+		</div>
+	</div>
+	<!-- In content 
+	<div class="mail-footer white-bg">
+						
+							
+							<ins class="adsbygoogle"
+								 style="display:inline-block;width:728px;height:90px"
+								 data-ad-client="ca-pub-9369318098976284"
+								 data-ad-slot="6976959860"></ins>
+							<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+	</div> -->
+</div>
+
+<!--
+
+<div class="">
+Filters:
+<select id="f_skin_race">
+<option value="-1">Any race</option>
+<option value="1">Caucasian</option><option value="2">African American</option><option value="3">Latino</option><option value="4">Asian</option> </select>
+<select id="f_skin_gender">
+<option value="-1">Any gender</option>
+<option value="1">Male</option><option value="2">Female</option> </select>
+<select id="f_skin_weight">
+<option value="-1">Any weight</option>
+<option value="1">Normal</option><option value="2">Overweight</option><option value="3">Muscular</option> </select>
+<select id="f_skin_category">
+<option value="-1">Any category</option>
+<option value="1">Civilian</option><option value="2">Gang Member</option><option value="3">Country &amp; Old people</option><option value="4">Prostitutes</option><option value="5">Sportsmen</option><option value="6">Specific Professions</option><option value="7">Beach Visitor</option><option value="8">Homeless person</option> </select>
+<button type="button" id="skin_filter_refresh" onclick="RefreshSkinList();">Refresh</button>
+<div id="skinlist"><img onclick="SkinChangePreview(1);" src="https://ls-rp.com/images/peds/1.jpg"><img onclick="SkinChangePreview(2);" src="https://ls-rp.com/images/peds/2.jpg"><img onclick="SkinChangePreview(3);" src="https://ls-rp.com/images/peds/3.jpg"><img onclick="SkinChangePreview(4);" src="https://ls-rp.com/images/peds/4.jpg"><img onclick="SkinChangePreview(5);" src="https://ls-rp.com/images/peds/5.jpg"><img onclick="SkinChangePreview(6);" src="https://ls-rp.com/images/peds/6.jpg"><img onclick="SkinChangePreview(7);" src="https://ls-rp.com/images/peds/7.jpg"><img onclick="SkinChangePreview(8);" src="https://ls-rp.com/images/peds/8.jpg"><img onclick="SkinChangePreview(9);" src="https://ls-rp.com/images/peds/9.jpg"><img onclick="SkinChangePreview(10);" src="https://ls-rp.com/images/peds/10.jpg"><img onclick="SkinChangePreview(11);" src="https://ls-rp.com/images/peds/11.jpg"><img onclick="SkinChangePreview(12);" src="https://ls-rp.com/images/peds/12.jpg"><img onclick="SkinChangePreview(13);" src="https://ls-rp.com/images/peds/13.jpg"><img onclick="SkinChangePreview(14);" src="https://ls-rp.com/images/peds/14.jpg"><img onclick="SkinChangePreview(15);" src="https://ls-rp.com/images/peds/15.jpg"><img onclick="SkinChangePreview(16);" src="https://ls-rp.com/images/peds/16.jpg"><img onclick="SkinChangePreview(17);" src="https://ls-rp.com/images/peds/17.jpg"><img onclick="SkinChangePreview(18);" src="https://ls-rp.com/images/peds/18.jpg"><img onclick="SkinChangePreview(19);" src="https://ls-rp.com/images/peds/19.jpg"><img onclick="SkinChangePreview(20);" src="https://ls-rp.com/images/peds/20.jpg"><img onclick="SkinChangePreview(21);" src="https://ls-rp.com/images/peds/21.jpg"><img onclick="SkinChangePreview(22);" src="https://ls-rp.com/images/peds/22.jpg"><img onclick="SkinChangePreview(23);" src="https://ls-rp.com/images/peds/23.jpg"><img onclick="SkinChangePreview(24);" src="https://ls-rp.com/images/peds/24.jpg"><img onclick="SkinChangePreview(25);" src="https://ls-rp.com/images/peds/25.jpg"><img onclick="SkinChangePreview(26);" src="https://ls-rp.com/images/peds/26.jpg"><img onclick="SkinChangePreview(27);" src="https://ls-rp.com/images/peds/27.jpg"><img onclick="SkinChangePreview(28);" src="https://ls-rp.com/images/peds/28.jpg"><img onclick="SkinChangePreview(29);" src="https://ls-rp.com/images/peds/29.jpg"><img onclick="SkinChangePreview(30);" src="https://ls-rp.com/images/peds/30.jpg"><img onclick="SkinChangePreview(31);" src="https://ls-rp.com/images/peds/31.jpg"><img onclick="SkinChangePreview(32);" src="https://ls-rp.com/images/peds/32.jpg"><img onclick="SkinChangePreview(33);" src="https://ls-rp.com/images/peds/33.jpg"><img onclick="SkinChangePreview(34);" src="https://ls-rp.com/images/peds/34.jpg"><img onclick="SkinChangePreview(35);" src="https://ls-rp.com/images/peds/35.jpg"><img onclick="SkinChangePreview(36);" src="https://ls-rp.com/images/peds/36.jpg"><br>Pages: <a href="#" onclick="RefreshSkinList(1);">1</a> <a href="#" onclick="RefreshSkinList(2);">2</a> <a href="#" onclick="RefreshSkinList(3);">3</a> <a href="#" onclick="RefreshSkinList(4);">4</a> <a href="#" onclick="RefreshSkinList(5);">5</a> <a href="#" onclick="RefreshSkinList(6);">6</a> <a href="#" onclick="RefreshSkinList(7);">7</a> <a href="#" onclick="RefreshSkinList(8);">8</a> </div>
+<div id="skinchange">
+</div>
+<script>
+	var mySkin = -1;
+	function RefreshSkinList(showPage){		
+		if(showPage == undefined) showPage = 0;
+		else if(showPage > 0) showPage--;
+		$.post( "https://ls-rp.com/skin_list.php", {page: showPage, race: $("#f_skin_race").val(), gender: $("#f_skin_gender").val(), weight: $("#f_skin_weight").val(), category: $("#f_skin_category").val()}, function( data ) {
+		}).done( function(){
+			$("#skinlist").empty();
+		}).success( function( data ){
+			var skinDump = jQuery.parseJSON(data);			
+			skinDump.skins.forEach(function(skin){
+				$("#skinlist").append("<img onclick=\"SkinChangePreview(" + skin.id + ");\" src=\"https://ls-rp.com/images/peds/" + skin.id + ".jpg\">");
+			});
+			if(skinDump.matches == 0){
+				$("#skinlist").append("No skins match your filters.");
+			}else{
+				if(skinDump.matches > 36){
+					$("#skinlist").append("<br />Pages: ");
+					for(var i = 1; i <= Math.ceil(skinDump.matches/36); i++){
+						$("#skinlist").append("<a href=\"#\" onclick=\"RefreshSkinList(" + i + ");\">" + i + "</a> ");
+					}
+				}
+			}
+		});
+	}
+	function SkinChangePreview(skinid){
+		$("#skinchange").empty();
+		$("#skinchange").append("<img style=\"min-height: 335px;\" src=\"https://ls-rp.com/images/skins/" + skinid + ".png\"><br />");
+		$("<input type='submit' value=\"Use This Skin\">").addClass("black_button skinChangeConfirm").appendTo("#skinchange");
+		$("#skinchange").fadeIn();
+		mySkin = skinid;
+		$("body").animate({scrollTop: $("#skinchange").offset().top}, 1500);
+	}
+	$(function(){
+		$("#skinchange").delegate(".skinChangeConfirm", "click", function(){
+			$.post("https://ls-rp.com/skinchange.php", {skin: mySkin}, function(data){				
+			}).done( function(data){
+				$("#skinchange").html(
+					"<br /><div id=\"_info\" class=\"ui-state-highlight ui-corner-all\" style=\"padding: 0 .7em;\">" + 
+					"<p><span class=\"ui-icon ui-icon-info\" style=\"float: left; margin-right: .3em;\"></span>" + 
+					data + 
+					"</p></div><br />"
+				);
+			});
+		});
+		RefreshSkinList();		
+	});
+</script>
+</div>
+-->
+
+</div>
+</div>
+</div>
